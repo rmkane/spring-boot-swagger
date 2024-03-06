@@ -1,8 +1,9 @@
-# Spring Boot 2.7 + Swagger
+# Spring Boot 3 + OpenAPI 3.0
 
 ## References
 
 - <https://www.baeldung.com/spring-boot-start>
+- <https://www.baeldung.com/spring-rest-openapi-documentation>
 - <https://github.com/eugenp/tutorials/tree/master/spring-boot-modules/spring-boot-bootstrap>
 - <https://www.bezkoder.com/spring-boot-swagger-3/>
 - <https://spring.io/projects/spring-boot#learn>
