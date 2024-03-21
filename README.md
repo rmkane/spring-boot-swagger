@@ -11,3 +11,10 @@
 ## Swagger
 
 Navigate to: <http://localhost:42069/swagger-ui/index.html>
+
+## Logging
+
+See:
+
+- <https://www.baeldung.com/spring-boot-logback-log4j2>
+- <https://www.digitalocean.com/community/tutorials/log4j2-example-tutorial-configuration-levels-appenders>

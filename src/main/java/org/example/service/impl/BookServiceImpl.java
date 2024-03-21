@@ -18,7 +18,7 @@ public class BookServiceImpl implements BookService {
 
   @Override
   public Iterable<Book> findAll() {
-    log.error("Finding all books...");
+    log.warn("Finding all books...");
     return bookRepository.findAll();
   }
 

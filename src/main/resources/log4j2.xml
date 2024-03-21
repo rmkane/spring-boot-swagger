@@ -1,7 +1,16 @@
-<Configuration status="info">
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
+        </Property>
+    </Properties>
     <Appenders>
+        <Appender type="CONSOLE" name="STDOUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Appender>
         <File name="FILE" fileName="app.log">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
         </File>
     </Appenders>
     <Loggers>
@@ -11,7 +20,10 @@
         <Logger name="org.hibernate.type.descriptor.sql" level="TRACE">
             <AppenderRef ref="FILE"/>
         </Logger>
-        <Root level="info">
+        <Logger name="org.example" level="DEBUG">
+            <AppenderRef ref="FILE"/>
+        </Logger>
+        <Root level="DEBUG">
             <AppenderRef ref="FILE"/>
         </Root>
     </Loggers>
