@@ -1,14 +1,107 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Home Page</title>
+    <title th:text="'Home - ' + ${appName}">Home - App</title>
+    <th:block th:replace="fragments/head :: site-head"></th:block>
   </head>
   <body>
     <div th:replace="fragments/header :: site-header"></div>
 
     <main>
-      <h2>Hello!</h2>
-      <p>Welcome to <span th:text="${appName}">Our App</span></p>
+      <div class="hero-section">
+        <h1 class="hero-title">
+          Welcome to
+          <span class="hero-app-name" th:text="${appName}">Our App</span>
+        </h1>
+        <p class="hero-subtitle">
+          A modern Spring Boot application with comprehensive book management
+          and API documentation
+        </p>
+      </div>
+
+      <div class="main-container">
+        <div class="features-grid">
+          <div class="feature-card">
+            <span class="feature-icon">📚</span>
+            <h3 class="feature-title">Book Management</h3>
+            <p class="feature-description">
+              View and manage your book collection with a clean, modern
+              interface. Browse books, view details, and access comprehensive
+              information.
+            </p>
+            <a href="/books" class="feature-link">View Books</a>
+          </div>
+
+          <div class="feature-card">
+            <span class="feature-icon">🔧</span>
+            <h3 class="feature-title">API Documentation</h3>
+            <p class="feature-description">
+              Explore the REST API with interactive Swagger documentation. Test
+              endpoints, view schemas, and understand the API structure.
+            </p>
+            <a
+              th:href="${swaggerUiPath}"
+              class="feature-link external-link"
+              target="_blank"
+            >
+              Swagger API
+            </a>
+          </div>
+
+          <div class="feature-card">
+            <span class="feature-icon">🗄️</span>
+            <h3 class="feature-title">Database Access</h3>
+            <p class="feature-description">
+              Access the H2 database console for direct database management.
+              View tables, run queries, and monitor data in real-time.
+            </p>
+            <a
+              th:href="${h2ConsolePath}"
+              class="feature-link external-link"
+              target="_blank"
+            >
+              H2 Database
+            </a>
+          </div>
+        </div>
+
+        <div class="stats-section">
+          <h2 class="stats-title">Application Statistics</h2>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-number">3</span>
+              <span class="stat-label">Core Features</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">API Coverage</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Database Access</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">∞</span>
+              <span class="stat-label">Scalability</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <h3>Technology Stack</h3>
+          <ul class="tech-list">
+            <li class="tech-tag">Spring Boot</li>
+            <li class="tech-tag">Spring Data JPA</li>
+            <li class="tech-tag">Thymeleaf</li>
+            <li class="tech-tag">H2 Database</li>
+            <li class="tech-tag">Flyway</li>
+            <li class="tech-tag">Swagger/OpenAPI</li>
+            <li class="tech-tag">Log4j2</li>
+            <li class="tech-tag">Maven</li>
+            <li class="tech-tag">Java 21</li>
+          </ul>
+        </div>
+      </div>
     </main>
 
     <div th:replace="fragments/footer :: site-footer"></div>

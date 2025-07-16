@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Books</title>
+    <title th:text="'Books - ' + ${appName}">Books - App</title>
+    <th:block th:replace="fragments/head :: site-head"></th:block>
   </head>
   <body>
     <div th:replace="fragments/header :: site-header"></div>
 
-    <style>
-      table {
-        border-collapse: collapse;
-      }
-      table,
-      th,
-      td {
-        border: thin solid grey;
-      }
-      th,
-      td {
-        padding: 0.5rem;
-      }
-      th {
-        background: #ddd;
-      }
-      tbody tr:nth-child(even) td {
-        background: #eee;
-      }
-    </style>
-
     <main>
-      <h2>Book List</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Author</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="book : ${books}">
-            <td th:text="${book.id}">1</td>
-            <td th:text="${book.title}">Title</td>
-            <td th:text="${book.author}">Author</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="books-container">
+        <div class="books-header">
+          <h2>Book Collection</h2>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Author</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:if="${#lists.isEmpty(books)}">
+              <td colspan="3" class="empty-state">
+                No books found in the collection.
+              </td>
+            </tr>
+            <tr th:each="book : ${books}">
+              <td>
+                <a
+                  th:href="@{/books/{id}(id=${book.id})}"
+                  th:text="${book.id}"
+                  class="link-primary"
+                  >1</a
+                >
+              </td>
+              <td class="book-title" th:text="${book.title}">Title</td>
+              <td class="book-author" th:text="${book.author}">Author</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
 
     <div th:replace="fragments/footer :: site-footer"></div>

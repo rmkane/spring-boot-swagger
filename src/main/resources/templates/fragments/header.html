@@ -1,88 +1,36 @@
 <!-- src/main/resources/templates/fragments/header.html -->
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <body>
-    <div th:fragment="site-header">
-      <style>
-        body {
-          padding: 0;
-          margin: 0;
-        }
-
-        main {
-          padding: 1rem;
-        }
-
-        header {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          background: #ddd;
-        }
-
-        header h1 {
-          display: flex;
-          margin: 0;
-          padding: 1rem;
-        }
-
-        nav {
-          display: flex;
-          justify-content: center;
-          background: #eee;
-          padding: 1rem;
-          align-self: stretch;
-        }
-
-        nav ul {
-          display: flex;
-          gap: 1rem;
-          padding: 0;
-          margin: 0;
-          list-style: none;
-        }
-
-        nav ul li {
-          padding: 0;
-          margin: 0;
-        }
-
-        nav a {
-          text-decoration: none;
-          color: black;
-        }
-
-        nav a.active {
-          font-weight: bold;
-          color: darkblue;
-          border-bottom: 2px solid darkblue;
-        }
-      </style>
-
-      <header>
-        <h1><a th:href="@{/}">Spring Boot App</a></h1>
-        <nav>
-          <ul>
-            <li>
-              <a
-                th:href="@{/}"
-                th:classappend="${requestUri == '/' ? 'active' : ''}"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                th:href="@{/books}"
-                th:classappend="${requestUri == '/books' ? 'active' : ''}"
-              >
-                View Books
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-    </div>
-  </body>
-</html>
+<div th:fragment="site-header">
+  <header class="site-header">
+    <h1><a th:href="@{/}" th:text="${appName}">Spring Boot App</a></h1>
+    <nav>
+      <ul>
+        <li>
+          <a
+            th:href="@{/}"
+            th:classappend="${requestUri == '/' ? 'active' : ''}"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            th:href="@{/books}"
+            th:classappend="${requestUri == '/books' ? 'active' : ''}"
+          >
+            View Books
+          </a>
+        </li>
+        <li>
+          <a th:href="${swaggerUiPath}" target="_blank" class="external">
+            Swagger API
+          </a>
+        </li>
+        <li>
+          <a th:href="${h2ConsolePath}" target="_blank" class="external">
+            H2 Database
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</div>

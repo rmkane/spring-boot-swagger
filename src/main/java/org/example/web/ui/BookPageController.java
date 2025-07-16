@@ -4,6 +4,7 @@ import org.example.persistence.repo.BookRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class BookPageController {
@@ -18,5 +19,16 @@ public class BookPageController {
   public String booksPage(Model model) {
     model.addAttribute("books", bookRepository.findAll());
     return "books"; // Thymeleaf will look for books.html
+  }
+
+  @GetMapping("/books/{id}")
+  public String bookDetailPage(@PathVariable long id, Model model) {
+    var book = bookRepository.findById(id);
+    if (book.isPresent()) {
+      model.addAttribute("book", book.get());
+      return "book-detail"; // Thymeleaf will look for book-detail.html
+    } else {
+      return "redirect:/books"; // Redirect to books list if book not found
+    }
   }
 }

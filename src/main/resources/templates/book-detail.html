@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="'Book Details - ' + ${appName}">Book Details - App</title>
+    <th:block th:replace="fragments/head :: site-head"></th:block>
+  </head>
+  <body>
+    <div th:replace="fragments/header :: site-header"></div>
+
+    <main>
+      <div class="book-detail">
+        <div class="card">
+          <div class="mb-4">
+            <a href="/books" class="link-back">← Back to Books List</a>
+          </div>
+
+          <div class="content-header">
+            <h1 class="content-title" th:text="${book.title}">Book Title</h1>
+            <p class="content-subtitle" th:text="'by ' + ${book.author}">
+              by Author Name
+            </p>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-label">Book ID:</div>
+            <div class="info-value" th:text="${book.id}">1</div>
+
+            <div class="info-label">Title:</div>
+            <div class="info-value" th:text="${book.title}">Book Title</div>
+
+            <div class="info-label">Author:</div>
+            <div class="info-value" th:text="${book.author}">Author Name</div>
+          </div>
+
+          <div class="actions">
+            <a href="/books" class="btn btn-secondary">Back to List</a>
+            <a
+              th:href="@{/api/books/{id}(id=${book.id})}"
+              class="btn btn-primary"
+              target="_blank"
+              >View JSON API</a
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div th:replace="fragments/footer :: site-footer"></div>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+/* Theme Variables for Spring Boot Swagger Application */
+
+:root {
+  /* Color Palette */
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #3b82f6;
+  --primary-lighter: #dbeafe;
+
+  --secondary-color: #64748b;
+  --secondary-dark: #475569;
+  --secondary-light: #94a3b8;
+  --secondary-lighter: #f1f5f9;
+
+  --success-color: #059669;
+  --success-dark: #047857;
+  --success-light: #10b981;
+  --success-lighter: #d1fae5;
+
+  --warning-color: #d97706;
+  --warning-dark: #b45309;
+  --warning-light: #f59e0b;
+  --warning-lighter: #fef3c7;
+
+  --danger-color: #dc2626;
+  --danger-dark: #b91c1c;
+  --danger-light: #ef4444;
+  --danger-lighter: #fee2e2;
+
+  --info-color: #0891b2;
+  --info-dark: #0e7490;
+  --info-light: #06b6d4;
+  --info-lighter: #cffafe;
+
+  --accent-color: #fbbf24;
+
+  /* Neutral Colors */
+  --white: #ffffff;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+  --black: #000000;
+
+  /* Background Colors */
+  --bg-primary: var(--white);
+  --bg-secondary: var(--gray-50);
+  --bg-tertiary: var(--gray-100);
+  --bg-dark: var(--gray-800);
+
+  /* Text Colors */
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-600);
+  --text-tertiary: var(--gray-500);
+  --text-inverse: var(--white);
+  --text-muted: var(--gray-400);
+
+  /* Border Colors */
+  --border-light: var(--gray-200);
+  --border-medium: var(--gray-300);
+  --border-dark: var(--gray-400);
+
+  /* Typography */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* Border Radius */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.375rem;  /* 6px */
+  --radius-lg: 0.5rem;    /* 8px */
+  --radius-xl: 0.75rem;   /* 12px */
+  --radius-2xl: 1rem;     /* 16px */
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+
+  /* Z-Index */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+
+  /* Layout */
+  --container-max-width: 1200px;
+  --header-height: 80px;
+  --sidebar-width: 250px;
+
+  /* Breakpoints (for reference) */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* Dark Theme (optional) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: var(--gray-900);
+    --bg-secondary: var(--gray-800);
+    --bg-tertiary: var(--gray-700);
+
+    --text-primary: var(--gray-100);
+    --text-secondary: var(--gray-300);
+    --text-tertiary: var(--gray-400);
+    --text-inverse: var(--gray-900);
+    --text-muted: var(--gray-500);
+
+    --border-light: var(--gray-700);
+    --border-medium: var(--gray-600);
+    --border-dark: var(--gray-500);
+
+    /* Enhanced table contrast in dark mode */
+    --table-hover-bg: var(--gray-800);
+    --table-border: var(--gray-700);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --primary-color: #0000ff;
+    --primary-dark: #000080;
+    --secondary-color: #666666;
+    --success-color: #008000;
+    --danger-color: #ff0000;
+    --warning-color: #ff8000;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-normal: 0ms;
+    --transition-slow: 0ms;
+  }
+}
