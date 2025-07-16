@@ -1,7 +1,16 @@
-<html xmlns:th="http://www.w3.org/1999/xhtml" lang="en">
-<head><title>Home Page</title></head>
-<body>
-<h1>Hello !</h1>
-<p>Welcome to <span th:text="${appName}">Our App</span></p>
-</body>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Home Page</title>
+  </head>
+  <body>
+    <div th:replace="fragments/header :: site-header"></div>
+
+    <main>
+      <h2>Hello!</h2>
+      <p>Welcome to <span th:text="${appName}">Our App</span></p>
+    </main>
+
+    <div th:replace="fragments/footer :: site-footer"></div>
+  </body>
 </html>

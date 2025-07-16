@@ -1,4 +1,4 @@
-package org.example.web;
+package org.example.web.api;
 
 import java.util.List;
 import lombok.AllArgsConstructor;

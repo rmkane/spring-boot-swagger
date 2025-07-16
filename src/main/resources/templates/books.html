@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Books</title>
+  </head>
+  <body>
+    <div th:replace="fragments/header :: site-header"></div>
+
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: thin solid grey;
+      }
+      th,
+      td {
+        padding: 0.5rem;
+      }
+      th {
+        background: #ddd;
+      }
+      tbody tr:nth-child(even) td {
+        background: #eee;
+      }
+    </style>
+
+    <main>
+      <h2>Book List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="book : ${books}">
+            <td th:text="${book.id}">1</td>
+            <td th:text="${book.title}">Title</td>
+            <td th:text="${book.author}">Author</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <div th:replace="fragments/footer :: site-footer"></div>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-package org.example.web;
+package org.example.web.ui;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
