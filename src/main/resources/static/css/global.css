@@ -403,6 +403,54 @@ body.has-sticky-nav main {
    PAGE-SPECIFIC COMPONENTS
    ========================================================================== */
 
+/* Error Page */
+.error-details {
+  margin-top: var(--space-6);
+}
+
+.error-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  padding: var(--space-4);
+  background: var(--danger-lighter);
+  border: 1px solid var(--danger-light);
+  border-radius: var(--radius-lg);
+}
+
+.error-code {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--danger-color);
+  background: var(--danger-color);
+  color: var(--text-inverse);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  min-width: 60px;
+  text-align: center;
+}
+
+.error-type {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--danger-dark);
+}
+
+.error-message {
+  margin-bottom: var(--space-6);
+  padding: var(--space-4);
+  background: var(--bg-secondary);
+  border-left: 4px solid var(--danger-color);
+  border-radius: var(--radius-md);
+}
+
+.error-message p {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+}
+
 /* Books Page */
 .books-container {
   max-width: 1000px;

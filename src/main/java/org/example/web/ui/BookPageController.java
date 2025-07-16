@@ -1,6 +1,7 @@
 package org.example.web.ui;
 
 import org.example.persistence.repo.BookRepository;
+import org.example.web.exception.BookNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +24,12 @@ public class BookPageController {
 
   @GetMapping("/books/{id}")
   public String bookDetailPage(@PathVariable long id, Model model) {
-    var book = bookRepository.findById(id);
-    if (book.isPresent()) {
-      model.addAttribute("book", book.get());
-      return "book-detail"; // Thymeleaf will look for book-detail.html
-    } else {
-      return "redirect:/books"; // Redirect to books list if book not found
-    }
+    var book =
+        bookRepository
+            .findById(id)
+            .orElseThrow(() -> new BookNotFoundException("Book not found with id: " + id));
+
+    model.addAttribute("book", book);
+    return "book-detail"; // Thymeleaf will look for book-detail.html
   }
 }

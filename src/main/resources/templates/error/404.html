@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title th:text="'Error - ' + ${appName}">Error - Our App</title>
+    <title th:text="'Page Not Found - ' + ${appName}">
+      Page Not Found - Our App
+    </title>
     <th:block th:replace="fragments/head :: site-head"></th:block>
   </head>
   <body>
@@ -11,27 +13,22 @@
       <div class="container">
         <div class="card">
           <div class="content-header">
-            <h1 class="content-title" th:text="${error ?: 'Error'}">Error</h1>
-            <p
-              class="content-subtitle"
-              th:text="${message ?: 'An error occurred'}"
-            >
-              An error occurred
+            <h1 class="content-title">Page Not Found</h1>
+            <p class="content-subtitle">
+              The requested page could not be found
             </p>
           </div>
 
           <div class="error-details">
             <div class="error-status">
-              <span class="error-code" th:text="${status ?: '500'}">500</span>
-              <span
-                class="error-type"
-                th:text="${error ?: 'Internal Server Error'}"
-                >Internal Server Error</span
-              >
+              <span class="error-code">404</span>
+              <span class="error-type">Not Found</span>
             </div>
 
-            <div class="error-message" th:if="${message}">
-              <p th:text="${message}">An unexpected error occurred.</p>
+            <div class="error-message">
+              <p>
+                The page you're looking for doesn't exist or has been moved.
+              </p>
             </div>
 
             <div class="actions">

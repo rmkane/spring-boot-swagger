@@ -1,7 +1,6 @@
 package org.example.web;
 
 import org.example.web.exception.BookIdMismatchException;
-import org.example.web.exception.BookNotFoundException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
@@ -17,12 +16,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
   public RestExceptionHandler() {
     super();
-  }
-
-  @ExceptionHandler(BookNotFoundException.class)
-  protected ResponseEntity<Object> handleNotFound(Exception ex, WebRequest request) {
-    return handleExceptionInternal(
-        ex, "Book not found", new HttpHeaders(), HttpStatus.NOT_FOUND, request);
   }
 
   @ExceptionHandler({
