@@ -1,6 +1,6 @@
-package org.example.web;
+package org.example.web.exception;
 
-import org.example.web.exception.BookIdMismatchException;
+import org.example.service.exception.BookIdMismatchException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;

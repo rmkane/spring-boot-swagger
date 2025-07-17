@@ -1,7 +1,7 @@
 package org.example.web.ui;
 
-import org.example.persistence.repo.BookRepository;
-import org.example.web.exception.BookNotFoundException;
+import org.example.repository.BookRepository;
+import org.example.service.exception.BookNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

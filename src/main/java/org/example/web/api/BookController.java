@@ -2,7 +2,7 @@ package org.example.web.api;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
-import org.example.persistence.model.Book;
+import org.example.repository.entity.Book;
 import org.example.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;

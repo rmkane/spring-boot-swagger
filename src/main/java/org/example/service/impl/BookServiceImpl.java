@@ -3,11 +3,11 @@ package org.example.service.impl;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.persistence.model.Book;
-import org.example.persistence.repo.BookRepository;
+import org.example.repository.BookRepository;
+import org.example.repository.entity.Book;
 import org.example.service.BookService;
-import org.example.web.exception.BookIdMismatchException;
-import org.example.web.exception.BookNotFoundException;
+import org.example.service.exception.BookIdMismatchException;
+import org.example.service.exception.BookNotFoundException;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor

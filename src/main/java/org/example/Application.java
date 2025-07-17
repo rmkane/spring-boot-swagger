@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Slf4j
-@EnableJpaRepositories("org.example.persistence.repo")
-@EntityScan("org.example.persistence.model")
+@EnableJpaRepositories("org.example.repository")
+@EntityScan("org.example.repository.entity")
 @SpringBootApplication
 public class Application {
   public static void main(String[] args) {

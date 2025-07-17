@@ -1,8 +1,8 @@
-package org.example.web;
+package org.example.web.exception;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.example.web.exception.BookNotFoundException;
+import org.example.service.exception.BookNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

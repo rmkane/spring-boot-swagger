@@ -1,4 +1,4 @@
-package org.example.web.exception;
+package org.example.service.exception;
 
 public class BookNotFoundException extends RuntimeException {
 

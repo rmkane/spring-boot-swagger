@@ -1,7 +1,7 @@
-package org.example.persistence.repo;
+package org.example.repository;
 
 import java.util.List;
-import org.example.persistence.model.Book;
+import org.example.repository.entity.Book;
 import org.springframework.data.repository.CrudRepository;
 
 public interface BookRepository extends CrudRepository<Book, Long> {

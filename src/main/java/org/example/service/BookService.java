@@ -1,7 +1,7 @@
 package org.example.service;
 
 import java.util.List;
-import org.example.persistence.model.Book;
+import org.example.repository.entity.Book;
 
 public interface BookService {
   Iterable<Book> findAll();
