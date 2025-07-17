@@ -1,37 +1,84 @@
 <!-- omit in toc -->
-# Spring Boot 3 + OpenAPI 3.0
+# Spring Boot Swagger Example
+
+A modern Spring Boot 3 application demonstrating:
+
+- REST API with OpenAPI 3 (Swagger UI)
+- H2 in-memory database with Flyway migrations
+- Thymeleaf UI
+- Spring Security
+- Theming and global error handling
+- Production-ready monitoring with Spring Boot Actuator
 
 <!-- omit in toc -->
-## Table of contents
+## Table of Contents
 
-- [Getting started](#getting-started)
+- [Overview](#overview)
+- [Prerequisites](#prerequisites)
+- [Getting Started](#getting-started)
 - [Features](#features)
-  - [Application UI](#application-ui)
-  - [Swagger API](#swagger-api)
-  - [H2 database UI](#h2-database-ui)
+- [Endpoints](#endpoints)
 - [References](#references)
 
-## Getting started
+## Overview
 
-Run `make` to build the Maven project, followed by `make run` to start the Spring Boot server.
+This project is a template for building robust, maintainable Spring Boot applications with a focus on:
+
+- Clean architecture and package structure
+- API documentation and discoverability
+- Developer experience and maintainability
+
+## Prerequisites
+
+- Java 21+
+- Maven 3.8+
+
+## Getting Started
+
+1. **Build the project:**
+
+   ```sh
+   make
+   ```
+
+2. **Run the application:**
+
+   ```sh
+   make run
+   ```
+
+3. **Access the app:**
+   - UI: [http://localhost:42069/](http://localhost:42069/)
+   - Swagger UI: [http://localhost:42069/swagger-ui/index.html](http://localhost:42069/swagger-ui/index.html)
+   - H2 Console: [http://localhost:42069/h2](http://localhost:42069/h2)
+   - Actuator: [http://localhost:42069/actuator/health](http://localhost:42069/actuator/health)
 
 ## Features
 
-### Application UI
+- **REST API**: CRUD for books, documented with OpenAPI/Swagger
+- **Themed UI**: Modern, responsive, accessible
+- **H2 Database**: In-memory, with Flyway migrations
+- **Security**: Basic Spring Security setup
+- **Error Handling**: Custom error pages and JSON responses
+- **Monitoring**: Spring Boot Actuator endpoints
+- **Developer Experience**: Makefile, code formatting, tests
 
-Navigate to: <http://localhost:42069/>
+## Endpoints
 
-### Swagger API
-
-Navigate to: <http://localhost:42069/swagger-ui/index.html>
-
-### H2 database UI
-
-Navigate to: <http://localhost:42069/h2>
+| Feature         | URL                                             | Description          |
+|-----------------|-------------------------------------------------|--------------------- |
+| App UI          | [/](/)                                          | Main web interface   |
+| Swagger UI      | [/swagger-ui/index.html](swagger-ui/index.html) | API docs & testing   |
+| H2 Console      | [/h2](h2)                                       | In-memory DB UI      |
+| API Root        | [/api/books](api/books)                         | Book REST API        |
+| Actuator Health | [/actuator/health](actuator/health)             | Health check         |
+| Actuator Info   | [/actuator/info](actuator/info)                 | App info             |
+| Actuator Metrics| [/actuator/metrics](actuator/metrics)           | Metrics & monitoring |
 
 ## References
 
-- <https://www.baeldung.com/spring-boot-start>
-- <https://www.baeldung.com/spring-boot-h2-database>
-- <https://www.baeldung.com/spring-boot-logback-log4j2>
-- <https://www.baeldung.com/spring-rest-openapi-documentation>
+- [Spring Boot Getting Started](https://www.baeldung.com/spring-boot-start)
+- [Spring Boot H2 Database](https://www.baeldung.com/spring-boot-h2-database)
+- [Spring Boot Log4j2](https://www.baeldung.com/spring-boot-logback-log4j2)
+- [Spring REST OpenAPI](https://www.baeldung.com/spring-rest-openapi-documentation)
+- [Spring Boot Actuator Docs](https://docs.spring.io/spring-boot/docs/current/actuator-api/htmlsingle/)
