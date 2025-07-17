@@ -35,7 +35,6 @@ This document describes the consistent theme system used throughout the Spring B
 - [Benefits](#benefits)
 - [Best Practices](#best-practices)
 
-
 ## Overview
 
 The theme system uses CSS Custom Properties (CSS Variables) to maintain consistency across all components. This allows for easy theming, dark mode support, and accessibility features.
