@@ -9,6 +9,7 @@ CURRENT_DATE="$(date +%Y-%m-%d)"
 ARCHIVE_NAME=""
 ARCHIVE_BASENAME=""
 MARKER_FILE=".encoded.txt"
+EXCLUDES=(".git" "target" "log")
 
 # === Paths ===
 SCRIPT_PATH="$(realpath "$0")"
@@ -82,8 +83,14 @@ encode() {
   echo "📦 Encoding project into: $ARCHIVE_NAME"
   cd "$ROOT_DIR"
 
-  # Copy all files except .git and target into archive-named folder
-  rsync -a --exclude='.git' --exclude='target' ./ "$TMP_DIR/$ARCHIVE_BASENAME"
+  # Build rsync exclude arguments
+  EXCLUDE_ARGS=()
+  for pattern in "${EXCLUDES[@]}"; do
+    EXCLUDE_ARGS+=(--exclude="$pattern")
+  done
+
+  # Copy all files, excluding patterns in EXCLUDES, into archive-named folder
+  rsync -a "${EXCLUDE_ARGS[@]}" ./ "$TMP_DIR/$ARCHIVE_BASENAME"
 
   # Rename all non-.txt files by appending .txt
   mapfile -t files_to_rename < <(find "$TMP_DIR/$ARCHIVE_BASENAME" -type f ! -name "*.txt")
@@ -122,8 +129,11 @@ decode() {
   )
 
   for file in "${files_to_restore[@]}"; do
-    mv "$file" "${file%.txt}"
-    log "Restored: $file → ${file%.txt}"
+    dest="${file%.txt}"
+    if [[ "$file" != "$dest" ]]; then
+      mv "$file" "$dest"
+      log "Restored: $file → $dest"
+    fi
   done
 
   echo "✅ Decode complete."
