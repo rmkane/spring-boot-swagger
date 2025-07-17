@@ -1,6 +1,40 @@
+<!-- omit in toc -->
 # Theme System Documentation
 
 This document describes the consistent theme system used throughout the Spring Boot Swagger application.
+
+<!-- omit in toc -->
+## Table of contents
+
+- [Overview](#overview)
+- [Color Palette](#color-palette)
+  - [Primary Colors](#primary-colors)
+  - [Secondary Colors](#secondary-colors)
+  - [Semantic Colors](#semantic-colors)
+  - [Neutral Colors](#neutral-colors)
+- [Typography](#typography)
+  - [Font Families](#font-families)
+  - [Font Sizes](#font-sizes)
+  - [Font Weights](#font-weights)
+- [Spacing](#spacing)
+  - [Space Scale](#space-scale)
+- [Border Radius](#border-radius)
+- [Shadows](#shadows)
+- [Transitions](#transitions)
+- [Usage Examples](#usage-examples)
+  - [Color Examples](#color-examples)
+  - [Typography Examples](#typography-examples)
+  - [Spacing Examples](#spacing-examples)
+  - [Border Radius Examples](#border-radius-examples)
+  - [Shadow Examples](#shadow-examples)
+  - [Transition Examples](#transition-examples)
+- [Accessibility Features](#accessibility-features)
+  - [Dark Mode Support](#dark-mode-support)
+  - [High Contrast Mode](#high-contrast-mode)
+  - [Reduced Motion](#reduced-motion)
+- [Benefits](#benefits)
+- [Best Practices](#best-practices)
+
 
 ## Overview
 
@@ -103,7 +137,7 @@ The theme system uses CSS Custom Properties (CSS Variables) to maintain consiste
 
 ## Usage Examples
 
-### Colors
+### Color Examples
 
 ```css
 .my-element {
@@ -113,7 +147,7 @@ The theme system uses CSS Custom Properties (CSS Variables) to maintain consiste
 }
 ```
 
-### Typography
+### Typography Examples
 
 ```css
 .my-heading {
@@ -124,7 +158,7 @@ The theme system uses CSS Custom Properties (CSS Variables) to maintain consiste
 }
 ```
 
-### Spacing
+### Spacing Examples
 
 ```css
 .my-component {
@@ -134,7 +168,7 @@ The theme system uses CSS Custom Properties (CSS Variables) to maintain consiste
 }
 ```
 
-### Border Radius
+### Border Radius Examples
 
 ```css
 .my-button {
@@ -142,7 +176,7 @@ The theme system uses CSS Custom Properties (CSS Variables) to maintain consiste
 }
 ```
 
-### Shadows
+### Shadow Examples
 
 ```css
 .my-card {
@@ -150,7 +184,7 @@ The theme system uses CSS Custom Properties (CSS Variables) to maintain consiste
 }
 ```
 
-### Transitions
+### Transition Examples
 
 ```css
 .my-interactive-element {
