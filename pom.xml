@@ -101,7 +101,7 @@
             <scope>provided</scope>
         </dependency>
 
-                <!-- ===== LOGGING ===== -->
+        <!-- ===== LOGGING ===== -->
 
         <!-- Log4j2 logging framework -->
         <dependency>
