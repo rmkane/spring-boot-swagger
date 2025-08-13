@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <title th:text="'Error - ' + ${appName}">Error - Our App</title>
-    <th:block th:replace="fragments/head :: site-head"></th:block>
+    <th:block th:replace="~{fragments/head :: site-head}"></th:block>
   </head>
   <body>
-    <div th:replace="fragments/header :: site-header"></div>
+    <div th:replace="~{fragments/header :: site-header}"></div>
 
     <main>
       <div class="container">
@@ -45,6 +45,6 @@
       </div>
     </main>
 
-    <div th:replace="fragments/footer :: site-footer"></div>
+    <div th:replace="~{fragments/footer :: site-footer}"></div>
   </body>
 </html>
