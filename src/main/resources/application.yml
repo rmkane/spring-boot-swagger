@@ -1,0 +1,62 @@
+server:
+  port: 42069
+  error:
+    whitelabel:
+      enabled: false
+    include-message: ALWAYS
+    include-binding-errors: ALWAYS
+    include-stacktrace: NEVER
+    include-exception: false
+    include-path: ALWAYS
+    include-status: ALWAYS
+    path: /error
+
+spring:
+  application:
+    name: Bootstrap Spring Boot
+
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: true
+
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  flyway:
+    enabled: true
+  h2:
+    console:
+      enabled: true
+      path: /h2
+      settings:
+        web-allow-others: true
+        trace: false
+
+  thymeleaf:
+    enabled: true
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+
+rest:
+  openapi:
+    dev-url: http://localhost:42069
+    prod-url: http://localhost:42069
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
