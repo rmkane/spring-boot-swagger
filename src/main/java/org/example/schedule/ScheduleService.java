@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.schedule.desync.DesyncTrigger;
 import org.example.schedule.domain.JobConfig;
 import org.example.schedule.domain.JobsProperties;
-import org.example.schedule.logging.MdcRunnable;
+import org.example.schedule.logging.MdcUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.Trigger;
@@ -94,7 +94,7 @@ public final class ScheduleService {
 
     Runnable baseTask = jobHandlers.getOrDefault(jobId, new JobHandler(jobId, cfg));
     Runnable task =
-        new MdcRunnable(baseTask, Map.of("jobId", jobId, "jobType", String.valueOf(cfg.getType())));
+        MdcUtils.wrap(baseTask, Map.of("jobId", jobId, "jobType", String.valueOf(cfg.getType())));
 
     switch (cfg.getType()) {
       case CRON -> {
