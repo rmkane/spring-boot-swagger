@@ -24,14 +24,18 @@ public final class DesyncTrigger implements Trigger {
   // used only to log at base time (optional)
   private final TaskScheduler prelogScheduler;
 
+  // These defaults correspond to the ones defined in @Desync
+  private static final Duration DEFAULT_WINDOW = Duration.parse("PT7M");
+  private static final Duration DEFAULT_JITTER = Duration.parse("PT20S");
+
   public DesyncTrigger(
       Trigger delegate,
+      TaskScheduler prelogScheduler,
       String key,
       String appName,
       String host,
       Duration window,
-      Duration jitter,
-      TaskScheduler prelogScheduler) {
+      Duration jitter) {
     this.delegate = Objects.requireNonNull(delegate, "delegate");
     this.key = Objects.requireNonNull(key, "key");
     this.appName = Objects.requireNonNull(appName, "appName");
@@ -90,5 +94,23 @@ public final class DesyncTrigger implements Trigger {
       throw new IllegalArgumentException(name + " must be ≥ PT0S");
     }
     return d;
+  }
+
+  /** Wrap an existing trigger. */
+  public static Trigger wrap(
+      Trigger delegate,
+      TaskScheduler prelogScheduler,
+      String key,
+      String appName,
+      String host,
+      Duration window,
+      Duration jitter) {
+    return new DesyncTrigger(delegate, prelogScheduler, key, appName, host, window, jitter);
+  }
+
+  /** Wrap an existing trigger with default window of 7 minutes with 20 seconds of jitter. */
+  public static Trigger wrap(
+      Trigger delegate, TaskScheduler prelogScheduler, String key, String appName, String host) {
+    return wrap(delegate, prelogScheduler, key, appName, host, DEFAULT_WINDOW, DEFAULT_JITTER);
   }
 }

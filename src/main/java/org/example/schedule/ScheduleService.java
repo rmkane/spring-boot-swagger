@@ -121,14 +121,14 @@ public final class ScheduleService {
       // Validates and throws IllegalArgumentException if bad.
       CronExpression.parse(expr);
       // Each job could supply the window and jitter
-      return new DesyncTrigger(
+      return DesyncTrigger.wrap(
           new CronTrigger(expr, ZoneOffset.UTC),
+          taskScheduler,
           jobId,
           appName,
           host,
           Duration.parse("PT5S"),
-          Duration.parse("PT1S"),
-          taskScheduler);
+          Duration.parse("PT1S"));
     } catch (IllegalArgumentException ex) {
       throw new IllegalArgumentException(
           "Invalid CRON expression for job "
