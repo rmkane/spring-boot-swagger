@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Properties>
-        <Property name="LOG_PATTERN">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+        <Property name="LOG_PATTERN">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} %X - %msg%n</Property>
         <Property name="LOG_DIR">log</Property>
         <Property name="LOG_FILE_NAME">app-${date:yyyy-MM-dd}.log</Property>
     </Properties>

@@ -5,41 +5,49 @@ app:
       value: 0 0 * * * *
       endpoint: https://cron:8000/task-0
       description: Run at the top of every hour
+      disabled: false
     task-cron-10:
       type: CRON
       value: 0 10 * * * *
       endpoint: https://cron:8000/task-1
       description: Run at the 10th minute of every hour
+      disabled: false
     task-cron-20:
       type: CRON
       value: 0 20 * * * *
       endpoint: https://cron:8000/task-2
       description: Run at the 20th minute of every hour
+      disabled: false
     task-cron-30:
       type: CRON
       value: 0 30 * * * *
       endpoint: https://cron:8000/task-3
       description: Run at the 30th minute of every hour
+      disabled: false
     task-cron-40:
       type: CRON
       value: 0 40 * * * *
       endpoint: https://cron:8000/task-4
       description: Run at the 40th minute of every hour
+      disabled: false
     task-cron-50:
       type: CRON
       value: 0 50 * * * *
       endpoint: https://cron:8000/task-5
       description: Run at the 50th minute of every hour
+      disabled: false
     task-dur-10:
       type: DURATION
       value: PT10S
       endpoint: https://duration:8000/task-1
       description: Run every 10 seconds
+      disabled: true
     task-dur-20:
       type: DURATION
       value: PT20S
       endpoint: https://duration:8000/task-2
       description: Run every 20 seconds
+      disabled: true
     task-dur-30:
       type: DURATION
       value: PT30S

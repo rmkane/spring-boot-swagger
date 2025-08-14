@@ -3,6 +3,7 @@ package org.example.schedule;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import java.time.Duration;
+import java.time.ZoneOffset;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,17 +11,25 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.function.Supplier;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.schedule.desync.DesyncTrigger;
 import org.example.schedule.domain.JobConfig;
 import org.example.schedule.domain.JobsProperties;
+import org.example.schedule.logging.MdcRunnable;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.Trigger;
 import org.springframework.scheduling.support.CronExpression;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public final class ScheduleService {
+
+  @Value("${spring.application.name}")
+  private String appName;
 
   private final JobsProperties jobsProperties;
   private final TaskScheduler taskScheduler;
@@ -44,7 +53,7 @@ public final class ScheduleService {
   @PostConstruct
   public void start() {
     Map<String, JobConfig> jobs = jobsProperties.getJobs();
-    if (jobs == null || jobs.isEmpty()) {
+    if (CollectionUtils.isEmpty(jobs)) {
       log.info("No jobs are scheduled");
       return;
     }
@@ -79,11 +88,13 @@ public final class ScheduleService {
     Objects.requireNonNull(cfg.getType(), "Job type is required");
     String rawValue = Objects.requireNonNull(cfg.getValue(), "Job value is required").trim();
 
-    Runnable task = jobHandlers.getOrDefault(jobId, new JobHandler(jobId, cfg));
+    Runnable baseTask = jobHandlers.getOrDefault(jobId, new JobHandler(jobId, cfg));
+    Runnable task =
+        new MdcRunnable(baseTask, Map.of("jobId", jobId, "jobType", String.valueOf(cfg.getType())));
 
     switch (cfg.getType()) {
       case CRON -> {
-        CronTrigger trigger = cronTrigger(jobId, rawValue);
+        Trigger trigger = cronTrigger(jobId, rawValue);
         track(
             jobId,
             () -> taskScheduler.schedule(task, trigger),
@@ -101,11 +112,19 @@ public final class ScheduleService {
   }
 
   /** Validate Spring 6-field cron and create a trigger. */
-  private CronTrigger cronTrigger(String jobId, String expr) {
+  private Trigger cronTrigger(String jobId, String expr) {
     try {
       // Validates and throws IllegalArgumentException if bad.
       CronExpression.parse(expr);
-      return new CronTrigger(expr);
+      // Each job could supply the window and jitter
+      return new DesyncTrigger(
+          new CronTrigger(expr, ZoneOffset.UTC),
+          jobId,
+          appName,
+          "default",
+          Duration.parse("PT5S"),
+          Duration.parse("PT1S"),
+          taskScheduler);
     } catch (IllegalArgumentException ex) {
       throw new IllegalArgumentException(
           "Invalid CRON expression for job "

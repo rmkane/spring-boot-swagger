@@ -1,3 +1,22 @@
+app:
+  legacy:
+    jobs:
+      cron1:
+        value: 0 * * * * *
+        disabled: false
+      cron5:
+        value: 0 */5 * * * *
+        disabled: false
+      rate10:
+        value: PT10S
+        disabled: true
+      rate20:
+        value: PT20S
+        disabled: true
+      rate30:
+        value: PT30S
+        disabled: true
+
 server:
   port: 42069
   error:
