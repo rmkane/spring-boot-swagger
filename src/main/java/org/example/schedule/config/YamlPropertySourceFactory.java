@@ -10,10 +10,8 @@ import org.springframework.core.io.support.PropertySourceFactory;
 import org.springframework.lang.Nullable;
 
 public final class YamlPropertySourceFactory implements PropertySourceFactory {
-
   @Override
   public PropertySource<?> createPropertySource(@Nullable String name, EncodedResource resource) {
-
     YamlPropertiesFactoryBean factory = new YamlPropertiesFactoryBean();
     factory.setResources(resource.getResource());
     factory.afterPropertiesSet();

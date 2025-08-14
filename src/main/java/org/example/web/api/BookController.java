@@ -1,7 +1,7 @@
 package org.example.web.api;
 
 import java.util.List;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.example.repository.entity.Book;
 import org.example.service.BookService;
 import org.springframework.http.HttpStatus;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping("/api/books")
+@RequiredArgsConstructor
 public class BookController {
-  private BookService bookService;
+  private final BookService bookService;
 
   @GetMapping
   public Iterable<Book> findAll() {

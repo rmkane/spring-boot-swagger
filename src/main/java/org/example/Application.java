@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@Slf4j
+@SpringBootApplication
 @EnableScheduling
 @EnableJpaRepositories("org.example.repository")
 @EntityScan("org.example.repository.entity")
-@SpringBootApplication
+@Slf4j
 public class Application {
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);

@@ -1,11 +1,11 @@
 package org.example.schedule;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.schedule.domain.JobConfig;
 
+@RequiredArgsConstructor
 @Slf4j
-@AllArgsConstructor
 public class JobHandler implements Runnable {
   private final String jobId;
   private final JobConfig cfg;

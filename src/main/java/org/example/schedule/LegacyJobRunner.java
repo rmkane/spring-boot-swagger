@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-@Slf4j
 @Component
+@Slf4j
 public class LegacyJobRunner {
   @Value("${app.legacy.jobs.cron1.disabled}")
   private boolean disabledCron1;

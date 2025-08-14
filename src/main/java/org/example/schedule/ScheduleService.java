@@ -23,13 +23,15 @@ import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public final class ScheduleService {
-
   @Value("${spring.application.name}")
   private String appName;
+
+  @Value("${HOSTNAME:unknown}")
+  private String host;
 
   private final JobsProperties jobsProperties;
   private final TaskScheduler taskScheduler;
@@ -52,6 +54,8 @@ public final class ScheduleService {
 
   @PostConstruct
   public void start() {
+    log.debug("Candidates for desync: { appName: {}, host: {} }", appName, host);
+
     Map<String, JobConfig> jobs = jobsProperties.getJobs();
     if (CollectionUtils.isEmpty(jobs)) {
       log.info("No jobs are scheduled");
@@ -121,7 +125,7 @@ public final class ScheduleService {
           new CronTrigger(expr, ZoneOffset.UTC),
           jobId,
           appName,
-          "default",
+          host,
           Duration.parse("PT5S"),
           Duration.parse("PT1S"),
           taskScheduler);

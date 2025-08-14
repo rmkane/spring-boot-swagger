@@ -17,9 +17,9 @@ import org.springframework.stereotype.Component;
  * has enough threads to avoid blocking unrelated jobs (e.g., {@link
  * org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler}).
  */
-@Slf4j
-@Aspect
 @Component
+@Aspect
+@Slf4j
 public class DesyncAspect {
 
   @Value("${spring.application.name:app}")

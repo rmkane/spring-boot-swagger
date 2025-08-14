@@ -1,21 +1,17 @@
 package org.example.schedule.logging;
 
 import java.util.Map;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.MDC;
 
 /**
  * Runnable decorator that sets MDC entries for the duration of the task, then automatically clears
  * them using {@link MDC#putCloseable}.
  */
+@RequiredArgsConstructor
 public final class MdcRunnable implements Runnable {
-
   private final Runnable delegate;
   private final Map<String, String> contextMap;
-
-  public MdcRunnable(Runnable delegate, Map<String, String> contextMap) {
-    this.delegate = delegate;
-    this.contextMap = contextMap;
-  }
 
   @Override
   public void run() {

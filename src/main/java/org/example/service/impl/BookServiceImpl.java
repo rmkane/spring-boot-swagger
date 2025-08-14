@@ -1,7 +1,7 @@
 package org.example.service.impl;
 
 import java.util.List;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.repository.BookRepository;
 import org.example.repository.entity.Book;
@@ -10,11 +10,11 @@ import org.example.service.exception.BookIdMismatchException;
 import org.example.service.exception.BookNotFoundException;
 import org.springframework.stereotype.Service;
 
-@AllArgsConstructor
 @Service
+@RequiredArgsConstructor
 @Slf4j
 public class BookServiceImpl implements BookService {
-  private BookRepository bookRepository;
+  private final BookRepository bookRepository;
 
   @Override
   public Iterable<Book> findAll() {
