@@ -65,15 +65,23 @@ This project is a template for building robust, maintainable Spring Boot applica
 
 ## Endpoints
 
-| Feature         | URL                                             | Description          |
-|-----------------|-------------------------------------------------|--------------------- |
-| App UI          | [/](/)                                          | Main web interface   |
-| Swagger UI      | [/swagger-ui/index.html](swagger-ui/index.html) | API docs & testing   |
-| H2 Console      | [/h2](h2)                                       | In-memory DB UI      |
-| API Root        | [/api/books](api/books)                         | Book REST API        |
-| Actuator Health | [/actuator/health](actuator/health)             | Health check         |
-| Actuator Info   | [/actuator/info](actuator/info)                 | App info             |
-| Actuator Metrics| [/actuator/metrics](actuator/metrics)           | Metrics & monitoring |
+| Feature           | URL                                   | Description          |
+|-------------------|---------------------------------------|----------------------|
+| App UI            | [/][app-ui]                           | Main web interface   |
+| Swagger UI        | [/swagger-ui/index.html][swagger-ui]  | API docs & testing   |
+| H2 Console        | [/h2][h2-console]                     | In-memory DB UI      |
+| API Root          | [/api/books][api-root]                | Book REST API        |
+| Actuator Health   | [/actuator/health][actuator-health]   | Health check         |
+| Actuator Info     | [/actuator/info][actuator-info]       | App info             |
+| Actuator Metrics  | [/actuator/metrics][actuator-metrics] | Metrics & monitoring |
+
+  [app-ui]: http://localhost:42069
+  [swagger-ui]: http://localhost:42069/swagger-ui/index.html
+  [h2-console]: http://localhost:42069/h2
+  [api-root]: http://localhost:42069/api/books
+  [actuator-health]: http://localhost:42069/actuator/health
+  [actuator-info]: http://localhost:42069/actuator/info
+  [actuator-metrics]: http://localhost:42069/actuator/metrics
 
 ## References
 
