@@ -1,9 +1,13 @@
 package org.example.schedule.desync;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Objects;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.lang.NonNull;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.Trigger;
 import org.springframework.scheduling.TriggerContext;
@@ -15,38 +19,31 @@ import org.springframework.scheduling.support.CronTrigger;
  * <p>Useful for wrapping a {@link CronTrigger} (or any {@link Trigger}) to avoid simultaneous fires
  * across independent instances.
  */
+@RequiredArgsConstructor
 @Slf4j
-public final class DesyncTrigger implements Trigger {
+public final class DesyncTrigger implements InitializingBean, Trigger {
   private final Trigger delegate;
+  private final TaskScheduler prelogScheduler;
   private final String key, appName, host;
   private final Duration window, jitter;
-
-  // used only to log at base time (optional)
-  private final TaskScheduler prelogScheduler;
 
   // These defaults correspond to the ones defined in @Desync
   private static final Duration DEFAULT_WINDOW = Duration.parse("PT7M");
   private static final Duration DEFAULT_JITTER = Duration.parse("PT20S");
+  private static final Duration MIN_FALLBACK_SKEW = Duration.ofMillis(250);
 
-  public DesyncTrigger(
-      Trigger delegate,
-      TaskScheduler prelogScheduler,
-      String key,
-      String appName,
-      String host,
-      Duration window,
-      Duration jitter) {
-    this.delegate = Objects.requireNonNull(delegate, "delegate");
-    this.key = Objects.requireNonNull(key, "key");
-    this.appName = Objects.requireNonNull(appName, "appName");
-    this.host = Objects.requireNonNull(host, "host");
-    this.window = requirePositive(window, "window");
-    this.jitter = requireNonNegative(jitter, "jitter");
-    this.prelogScheduler = prelogScheduler;
+  @Override
+  public void afterPropertiesSet() {
+    requireNonNull(delegate, "delegate");
+    requireNonNull(key, "key");
+    requireNonNull(appName, "appName");
+    requireNonNull(host, "host");
+    requirePositive(window, "window");
+    requireNonNegative(jitter, "jitter");
   }
 
   @Override
-  public Instant nextExecution(TriggerContext ctx) {
+  public Instant nextExecution(@NonNull TriggerContext ctx) {
     final Instant base = delegate.nextExecution(ctx);
     if (base == null) return null;
 
@@ -76,12 +73,12 @@ public final class DesyncTrigger implements Trigger {
     if (candidate.isAfter(now)) return candidate;
 
     // If we’re late (e.g., scheduled inside the window), push to now + a minimal skew
-    Duration minSkew = delay.isZero() ? Duration.ofMillis(250) : delay;
+    Duration minSkew = delay.isZero() ? MIN_FALLBACK_SKEW : delay;
     return now.plus(minSkew);
   }
 
   private static Duration requirePositive(Duration d, String name) {
-    Objects.requireNonNull(d, name);
+    requireNonNull(d, name);
     if (d.isZero() || d.isNegative()) {
       throw new IllegalArgumentException(name + " must be > PT0S");
     }
@@ -89,7 +86,7 @@ public final class DesyncTrigger implements Trigger {
   }
 
   private static Duration requireNonNegative(Duration d, String name) {
-    Objects.requireNonNull(d, name);
+    requireNonNull(d, name);
     if (d.isNegative()) {
       throw new IllegalArgumentException(name + " must be ≥ PT0S");
     }
