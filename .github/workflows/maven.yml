@@ -29,5 +29,14 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Verify code formatting
+        run: mvn --batch-mode fmt:check
+
       - name: Build and test with Maven
-        run: mvn --batch-mode verify
+        run: mvn --batch-mode clean verify
+
+      - name: Run code quality checks
+        run: mvn --batch-mode checkstyle:check pmd:check
+
+      - name: Run security scan
+        run: mvn --batch-mode org.owasp:dependency-check-maven:check
