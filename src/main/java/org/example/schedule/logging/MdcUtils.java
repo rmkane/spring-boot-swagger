@@ -3,6 +3,7 @@ package org.example.schedule.logging;
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 
 /**
@@ -39,6 +40,7 @@ import org.slf4j.MDC;
  * </ul>
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Slf4j
 public final class MdcUtils {
 
   /**
@@ -111,7 +113,7 @@ public final class MdcUtils {
         try {
           closers[i].close();
         } catch (Exception ignore) {
-          // never propagate from MDC cleanup
+          log.trace("Error closing MDC", ignore);
         }
       }
     };

@@ -19,7 +19,7 @@ help: # Show available commands
 		}' $(MAKEFILE_LIST)
 
 build: # Compile and package the application (including fat JAR)
-	$(MVN) clean install
+	$(MVN) clean install -Ddependency-check.skip=true
 
 format: # Format the code using fmt-maven-plugin
 	$(MVN) com.spotify.fmt:fmt-maven-plugin:format

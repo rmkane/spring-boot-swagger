@@ -1,12 +1,9 @@
 package org.example.web.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 import org.example.service.exception.BookNotFoundException;
+import org.example.web.util.ErrorResponseUtil;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,11 +19,12 @@ public class GlobalExceptionHandler {
 
     // Check if this is an API request
     if (requestPath.contains("/api/")) {
-      return createApiErrorResponse(404, "Book not found", requestPath);
+      return ErrorResponseUtil.createApiErrorResponse(
+          HttpStatus.NOT_FOUND.value(), "Book not found", requestPath);
     }
 
     // Return error page for web requests
-    model.addAttribute("status", "404");
+    model.addAttribute("status", HttpStatus.NOT_FOUND.value());
     model.addAttribute("error", "Book Not Found");
     model.addAttribute("message", ex.getMessage());
     return "error";
@@ -45,7 +43,8 @@ public class GlobalExceptionHandler {
 
     // Check if this is an API request
     if (requestPath.contains("/api/")) {
-      return createApiErrorResponse(404, "Resource not found", requestPath);
+      return ErrorResponseUtil.createApiErrorResponse(
+          HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), requestPath);
     }
 
     // Return error page for web requests
@@ -61,12 +60,15 @@ public class GlobalExceptionHandler {
 
     // Check if this is an API request
     if (requestPath.contains("/api/")) {
-      return createApiErrorResponse(500, "Internal server error", requestPath);
+      return ErrorResponseUtil.createApiErrorResponse(
+          HttpStatus.INTERNAL_SERVER_ERROR.value(),
+          HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
+          requestPath);
     }
 
     // Return error page for web requests
-    model.addAttribute("status", "500");
-    model.addAttribute("error", "Internal Server Error");
+    model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+    model.addAttribute("error", HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
     model.addAttribute("message", "An unexpected error occurred.");
     return "error";
   }
@@ -86,18 +88,5 @@ public class GlobalExceptionHandler {
             || requestPath.endsWith(".woff2")
             || requestPath.endsWith(".ttf")
             || requestPath.endsWith(".eot"));
-  }
-
-  private ResponseEntity<Map<String, Object>> createApiErrorResponse(
-      int statusCode, String message, String path) {
-    Map<String, Object> errorResponse = new HashMap<>();
-    errorResponse.put("error", HttpStatus.valueOf(statusCode).getReasonPhrase());
-    errorResponse.put("message", message);
-    errorResponse.put("status", statusCode);
-    errorResponse.put("path", path);
-
-    return ResponseEntity.status(HttpStatus.valueOf(statusCode))
-        .contentType(MediaType.APPLICATION_JSON)
-        .body(errorResponse);
   }
 }
