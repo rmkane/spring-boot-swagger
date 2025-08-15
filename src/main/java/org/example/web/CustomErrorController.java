@@ -1,6 +1,8 @@
 package org.example.web;
 
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
+import lombok.extern.slf4j.Slf4j;
 import org.example.web.util.ErrorResponseUtil;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@Slf4j
 public class CustomErrorController implements ErrorController {
 
   @RequestMapping("/error")
@@ -19,7 +22,7 @@ public class CustomErrorController implements ErrorController {
     System.out.println("All attributes:");
 
     // Print all request attributes for debugging
-    java.util.Enumeration<String> attributeNames = request.getAttributeNames();
+    Enumeration<String> attributeNames = request.getAttributeNames();
     while (attributeNames.hasMoreElements()) {
       String name = attributeNames.nextElement();
       Object value = request.getAttribute(name);
@@ -46,13 +49,8 @@ public class CustomErrorController implements ErrorController {
     String errorMessage = message != null ? message.toString() : "An error occurred";
     String requestPath = path != null ? path.toString() : request.getRequestURI();
 
-    System.out.println(
-        "Final values - Status: "
-            + statusCode
-            + ", Path: "
-            + requestPath
-            + ", Message: "
-            + errorMessage);
+    log.info(
+        "Final values - Status: {}, Path: {}, Message: {}", statusCode, requestPath, errorMessage);
 
     // Check if this is an API request
     if (requestPath.contains("/api/")) {

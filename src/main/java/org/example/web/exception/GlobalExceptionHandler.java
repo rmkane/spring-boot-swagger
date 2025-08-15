@@ -3,6 +3,7 @@ package org.example.web.exception;
 import jakarta.servlet.http.HttpServletRequest;
 import org.example.service.exception.BookNotFoundException;
 import org.example.web.util.ErrorResponseUtil;
+import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,11 +19,12 @@ public class GlobalExceptionHandler {
 
     // Check if this is an API request
     if (requestPath.contains("/api/")) {
-      return ErrorResponseUtil.createApiErrorResponse(404, "Book not found", requestPath);
+      return ErrorResponseUtil.createApiErrorResponse(
+          HttpStatus.NOT_FOUND.value(), "Book not found", requestPath);
     }
 
     // Return error page for web requests
-    model.addAttribute("status", "404");
+    model.addAttribute("status", HttpStatus.NOT_FOUND.value());
     model.addAttribute("error", "Book Not Found");
     model.addAttribute("message", ex.getMessage());
     return "error";
@@ -41,7 +43,8 @@ public class GlobalExceptionHandler {
 
     // Check if this is an API request
     if (requestPath.contains("/api/")) {
-      return ErrorResponseUtil.createApiErrorResponse(404, "Resource not found", requestPath);
+      return ErrorResponseUtil.createApiErrorResponse(
+          HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), requestPath);
     }
 
     // Return error page for web requests
@@ -57,12 +60,15 @@ public class GlobalExceptionHandler {
 
     // Check if this is an API request
     if (requestPath.contains("/api/")) {
-      return ErrorResponseUtil.createApiErrorResponse(500, "Internal server error", requestPath);
+      return ErrorResponseUtil.createApiErrorResponse(
+          HttpStatus.INTERNAL_SERVER_ERROR.value(),
+          HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
+          requestPath);
     }
 
     // Return error page for web requests
-    model.addAttribute("status", "500");
-    model.addAttribute("error", "Internal Server Error");
+    model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+    model.addAttribute("error", HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
     model.addAttribute("message", "An unexpected error occurred.");
     return "error";
   }
